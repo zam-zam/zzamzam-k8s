@@ -1,0 +1,7 @@
+repositories:
+  - name: ingress-nginx
+    url: https://kubernetes.github.io/ingress-nginx
+  - name: jetstack
+    url: https://charts.jetstack.io
+  - name: gitea-charts
+    url: https://dl.gitea.io/charts/

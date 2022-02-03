@@ -1,0 +1,29 @@
+persistence:
+  enabled: true
+  size: 2Gi
+  storageClass: openebs-hostpath
+
+memcached:
+  enabled: true
+
+postgresql:
+  enabled: true
+  persistence:
+    enabled: true
+    storageClass: openebs-hostpath
+    size: 5Gi
+
+mysql:
+  enabled: false
+
+mariadb:
+  enabled: false
+
+gitea:
+  config:
+    repository:
+      DEFAULT_PRIVATE: true
+    security:
+      INSTALL_LOCK: true
+    service:
+      DISABLE_REGISTRATION: true

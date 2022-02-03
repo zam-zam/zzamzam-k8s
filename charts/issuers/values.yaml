@@ -1,0 +1,14 @@
+issuersMap: {}
+  # letsencrypt:
+  #   kind: ClusterIssuer
+  #   namespace: cert-manager
+  #   spec:
+  #     acme:
+  #       server: https://acme-v02.api.letsencrypt.org/directory
+  #       email: <email>
+  #       privateKeySecretRef:
+  #         name: letsencrypt
+  #       solvers:
+  #       - http01:
+  #           ingress:
+  #             class: nginx
