@@ -22,3 +22,12 @@ apps:
     chart: gitea
     version: 5.0.1
     namespace: gitea
+  secrets-postfix:
+    repo: charts
+    chart: secrets
+    namespace: postfix
+  postfix:
+    repo: docker-postfix
+    chart: mail
+    version: 3.4.0
+    namespace: postfix

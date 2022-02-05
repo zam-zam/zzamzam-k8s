@@ -1,0 +1,23 @@
+config:
+  general:
+    ALLOWED_SENDER_DOMAINS: "zzamzam.dev"
+  postfix:
+    mydomain: "zzamzam.dev"
+    myhostname: "mx.zzamzam.dev"
+    mydestination: "$myhostname, localhost.$mydomain, localhost, $mydomain"
+    message_size_limit: "10485760"
+
+persistence:
+  enabled: true
+  storageClass: openebs-hostpath
+  size: 1Gi
+
+extraVolumes:
+  - name: opendkim-keys
+    secret:
+      secretName: opendkim-keys
+
+extraVolumeMounts:
+  - name: opendkim-keys
+    mountPath: "/etc/opendkim/keys"
+    readOnly: true
