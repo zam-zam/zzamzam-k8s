@@ -1,0 +1,14 @@
+configsMap:
+  scripts-initdb:
+    data:
+      {{- range (list "gitea" "kratos") }}
+      db_init-{{ . }}.sh: |
+        if [ -z  $(psql -U 'postgres' -tAq -c "SELECT 1 AS result from pg_database where datname='{{ . }}'";) ]; then
+            psql \
+            -U 'postgres' \
+            -c "CREATE DATABASE {{ . }}" \
+            -c "CREATE USER {{ . }} WITH PASSWORD '{{ . }}'" \
+            -c "ALTER DATABASE {{ . }} OWNER TO {{ . }}" \
+            -c "GRANT ALL PRIVILEGES ON DATABASE {{ . }} to {{ . }}";
+        fi
+      {{- end }}

@@ -5,5 +5,7 @@ repositories:
     url: https://charts.jetstack.io
   - name: gitea-charts
     url: https://dl.gitea.io/charts/
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
   - name: docker-postfix
     url: https://bokysan.github.io/docker-postfix
