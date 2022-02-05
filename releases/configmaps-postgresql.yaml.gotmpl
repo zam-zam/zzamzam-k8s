@@ -9,6 +9,6 @@ configsMap:
             -c "CREATE DATABASE {{ . }}" \
             -c "CREATE USER {{ . }} WITH PASSWORD '{{ . }}'" \
             -c "ALTER DATABASE {{ . }} OWNER TO {{ . }}" \
-            -c "GRANT ALL PRIVILEGES ON DATABASE {{ . }} to {{ . }}";
+            -c "GRANT ALL PRIVILEGES ON DATABASE {{ . }} TO {{ . }}";
         fi
       {{- end }}
