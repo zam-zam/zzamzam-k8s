@@ -45,3 +45,9 @@ apps:
     chart: gitea
     version: 5.0.1
     namespace: gitea
+  # sso
+  keycloak:
+    repo: bitnami
+    chart: keycloak
+    version: 6.1.4
+    namespace: keycloak
