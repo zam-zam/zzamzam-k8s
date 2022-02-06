@@ -1,6 +1,6 @@
 ingress-nginx:
   tcp:
-    4022: "gitea/gitea-ssh:22"
+    "4022": "gitea/gitea-ssh:22"
 
 cert-manager-issuers:
   issuersMap:
@@ -76,6 +76,7 @@ gitea:
         INSTALL_LOCK: true
       server:
         SSH_PORT: 4022
+        ROOT_URL: https://git.k8s.zzamzam.dev/
       service:
         DISABLE_REGISTRATION: true
         REQUIRE_SIGNIN_VIEW: true
