@@ -51,3 +51,9 @@ apps:
     chart: keycloak
     version: 6.1.4
     namespace: keycloak
+  # joplin
+  joplin-server:
+    repo: k8s-at-home
+    chart: joplin-server
+    version: 4.5.0
+    namespace: joplin

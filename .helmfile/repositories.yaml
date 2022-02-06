@@ -9,3 +9,5 @@ repositories:
     url: https://charts.bitnami.com/bitnami
   - name: docker-postfix
     url: https://bokysan.github.io/docker-postfix
+  - name: k8s-at-home
+    url: https://k8s-at-home.com/charts/

@@ -25,3 +25,37 @@ keycloak:
     - secretName: letsencrypt
       hosts:
         - auth.k8s.zzamzam.dev
+joplin-server:
+  image:
+    tag: 2.6.14-beta
+  env:
+    TZ: "UTC"
+    APP_BASE_URL: "https://joplin.k8s.zzamzam.dev"
+    DB_CLIENT: pg
+    POSTGRES_HOST: postgresql.postgresql.svc.cluster.local
+    POSTGRES_PORT: 5432
+    POSTGRES_DATABASE: joplin
+    POSTGRES_USER: joplin
+    MAILER_ENABLED: "1"
+    MAILER_HOST: postfix-mail.postfix.svc.cluster.local
+    MAILER_PORT: 587
+    MAILER_SECURE: "0"
+    MAILER_NOREPLY_EMAIL: joplin@zzamzam.dev
+
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: "letsencrypt"
+      hosts:
+        - host: joplin.k8s.zzamzam.dev
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+      - secretName: letsencrypt
+        hosts:
+          - joplin.k8s.zzamzam.dev
+  postgresql:
+    enabled: false
