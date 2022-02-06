@@ -1,4 +1,96 @@
+ingress-nginx:
+  tcp:
+    4022: "gitea/gitea-ssh:22"
+
+cert-manager-issuers:
+  issuersMap:
+    letsencrypt:
+      kind: ClusterIssuer
+      namespace: cert-manager
+      spec:
+        acme:
+          server: https://acme-v02.api.letsencrypt.org/directory
+          email: dangeron@gmail.com
+          privateKeySecretRef:
+            name: letsencrypt
+          solvers:
+          - http01:
+              ingress:
+                class: nginx
+
+postgresql:
+  global:
+    storageClass: openebs-hostpath
+  auth:
+    enablePostgresUser: true
+    postgresPassword: postgres
+  architecture: standalone
+  primary:
+    initdb:
+      scriptsConfigMap: scripts-initdb
+    persistence:
+      enabled: true
+      size: 8Gi
+
+postfix:
+  config:
+    general:
+      ALLOWED_SENDER_DOMAINS: "zzamzam.dev"
+    postfix:
+      mydomain: "zzamzam.dev"
+      myhostname: "mx.zzamzam.dev"
+      mydestination: "$myhostname, localhost.$mydomain, localhost, $mydomain"
+      message_size_limit: "10485760"
+  persistence:
+    enabled: true
+    storageClass: openebs-hostpath
+    size: 1Gi
+  extraVolumes:
+    - name: opendkim-keys
+      secret:
+        secretName: opendkim-keys
+  extraVolumeMounts:
+    - name: opendkim-keys
+      mountPath: "/etc/opendkim/keys"
+      readOnly: true
+
 gitea:
+  gitea:
+    admin:
+      existingSecret: gitea-admin
+    config:
+      database:
+        DB_TYPE: postgres
+        HOST: postgresql.postgresql.svc.cluster.local:5432
+        NAME: gitea
+        USER: gitea
+        PASSWD: gitea
+      mailer:
+        ENABLED: true
+        HOST: postfix-mail.postfix.svc.cluster.local:587
+        FROM: gitea@zzamzam.dev
+        MAILER_TYPE: smtp
+      repository:
+        DEFAULT_PRIVATE: private
+      security:
+        INSTALL_LOCK: true
+      server:
+        SSH_PORT: 4022
+      service:
+        DISABLE_REGISTRATION: true
+        REQUIRE_SIGNIN_VIEW: true
+  persistence:
+    enabled: true
+    size: 2Gi
+    storageClass: openebs-hostpath
+  memcached:
+    enabled: true
+  postgresql:
+    enabled: false
+  mysql:
+    enabled: false
+  mariadb:
+    enabled: false
   ingress:
     enabled: true
     annotations:
@@ -13,7 +105,22 @@ gitea:
     - secretName: letsencrypt
       hosts:
         - git.k8s.zzamzam.dev
+
 keycloak:
+  global:
+    storageClass: openebs-hostpath
+  auth:
+    adminUser: keycloak
+  proxyAddressForwarding: true
+  service:
+    type: ClusterIP
+  postgresql:
+    enabled: false
+  externalDatabase:
+    host: postgresql.postgresql.svc.cluster.local
+    port: 5432
+    user: keycloak
+    database: keycloak
   ingress:
     enabled: false
     annotations:
@@ -25,6 +132,7 @@ keycloak:
     - secretName: letsencrypt
       hosts:
         - auth.k8s.zzamzam.dev
+
 joplin-server:
   image:
     tag: 2.6.14-beta
@@ -41,7 +149,6 @@ joplin-server:
     MAILER_PORT: 587
     MAILER_SECURE: "0"
     MAILER_NOREPLY_EMAIL: joplin@zzamzam.dev
-
   ingress:
     main:
       enabled: true
