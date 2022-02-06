@@ -16,10 +16,8 @@ mariadb:
   enabled: false
 
 gitea:
-  gitea:
-    admin:
-      existingSecret: gitea-admin
-      email: dangeron@gmail.com
+  admin:
+    existingSecret: gitea-admin
   config:
     database:
       DB_TYPE: postgres
