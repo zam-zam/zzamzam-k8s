@@ -3,24 +3,11 @@ global:
 
 auth:
   adminUser: keycloak
-  adminPassword: keycloak
 
 proxyAddressForwarding: true
 
 service:
   type: ClusterIP
-
-ingress:
-  enabled: false
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: "letsencrypt"
-  hostname: auth.k8s.zzamzam.dev
-  tls: true
-  extraTls:
-  - secretName: letsencrypt
-    hosts:
-      - auth.k8s.zzamzam.dev
 
 postgresql:
   enabled: false
@@ -29,5 +16,4 @@ externalDatabase:
   host: postgresql.postgresql.svc.cluster.local
   port: 5432
   user: keycloak
-  password: keycloak
   database: keycloak

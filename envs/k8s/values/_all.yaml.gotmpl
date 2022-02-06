@@ -1,8 +1,4 @@
 gitea:
-  gitea:
-    admin:
-      existingSecret: gitea-admin
-      email: gitea@local.domain
   ingress:
     enabled: true
     annotations:
@@ -17,3 +13,15 @@ gitea:
     - secretName: letsencrypt
       hosts:
         - git.k8s.zzamzam.dev
+keycloak:
+  ingress:
+    enabled: false
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      cert-manager.io/cluster-issuer: "letsencrypt"
+    hostname: auth.k8s.zzamzam.dev
+    tls: true
+    extraTls:
+    - secretName: letsencrypt
+      hosts:
+        - auth.k8s.zzamzam.dev
