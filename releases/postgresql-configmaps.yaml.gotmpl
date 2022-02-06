@@ -1,7 +1,9 @@
+fullnameOverride: postgresql-configmaps
+
 configsMap:
   scripts-initdb:
     data:
-      {{- range (list "gitea" "kratos") }}
+      {{- range (list "gitea" "keycloak") }}
       db_init-{{ . }}.sh: |
         if [ -z  $(psql -U 'postgres' -tAq -c "SELECT 1 AS result from pg_database where datname='{{ . }}'";) ]; then
             psql \

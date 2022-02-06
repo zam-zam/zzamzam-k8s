@@ -1,28 +1,22 @@
 apps:
+  # ingress
   ingress-nginx:
     repo: ingress-nginx
     chart: ingress-nginx
     version: 4.0.16
     namespace: ingress-nginx
+  # cert-manager
   cert-manager:
     repo: jetstack
     chart: cert-manager
     version: v1.7.0
     namespace: cert-manager
-  secrets-gitea:
-    repo: charts
-    chart: secrets
-    namespace: gitea
-  issuers-cert-manager:
+  cert-manager-issuers:
     repo: charts
     chart: issuers
     namespace: cert-manager
-  gitea:
-    repo: gitea-charts
-    chart: gitea
-    version: 5.0.1
-    namespace: gitea
-  configmaps-postgresql:
+  # postgresql
+  postgresql-configmaps:
     repo: charts
     chart: configmaps
     namespace: postgresql
@@ -31,7 +25,8 @@ apps:
     chart: postgresql
     version: 11.0.1
     namespace: postgresql
-  secrets-postfix:
+  # postfix
+  postfix-secrets:
     repo: charts
     chart: secrets
     namespace: postfix
@@ -40,3 +35,13 @@ apps:
     chart: mail
     version: 3.4.0
     namespace: postfix
+  # gitea
+  gitea-secrets:
+    repo: charts
+    chart: secrets
+    namespace: gitea
+  gitea:
+    repo: gitea-charts
+    chart: gitea
+    version: 5.0.1
+    namespace: gitea

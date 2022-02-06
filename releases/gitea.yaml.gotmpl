@@ -23,6 +23,11 @@ gitea:
       NAME: gitea
       USER: gitea
       PASSWD: gitea
+    mailer:
+      ENABLED: true
+      HOST: postfix-mail.postfix.svc.cluster.local:587
+      FROM: gitea@zzamzam.dev
+      MAILER_TYPE: smtp
     repository:
       DEFAULT_PRIVATE: private
     security:
