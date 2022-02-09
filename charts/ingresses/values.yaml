@@ -1,0 +1,21 @@
+ingressMap: {}
+  # host-example-com:
+  #   annotations:
+  #     cert-manager.io/cluster-issuer: letsencrypt
+  #     kubernetes.io/ingress.class: nginx
+  #   spec:
+  #     rules:
+  #     - host: host.example.com
+  #       http:
+  #         paths:
+  #         - backend:
+  #             service:
+  #               name: host
+  #               port:
+  #                 number: 8080
+  #           path: /
+  #           pathType: Prefix
+  #     tls:
+  #     - hosts:
+  #       - host.example.com
+  #       secretName: letsencrypt

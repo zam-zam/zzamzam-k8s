@@ -2,6 +2,25 @@ ingress-nginx:
   tcp:
     "4022": "gitea/gitea-ssh:22"
 
+ingresses:
+  ingressMap:
+    ip-k8s-zzamzam-dev:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+        kubernetes.io/ingress.class: nginx
+        nginx.ingress.kubernetes.io/server-snippet: |
+          location = / {
+            add_header Content-Type text/plain;
+            return 200 $remote_addr;
+          }
+      spec:
+        rules:
+        - host: ip.k8s.zzamzam.dev
+        tls:
+        - hosts:
+          - ip.k8s.zzamzam.dev
+          secretName: ip-k8s-zzamzam-dev
+
 cert-manager-issuers:
   issuersMap:
     letsencrypt:

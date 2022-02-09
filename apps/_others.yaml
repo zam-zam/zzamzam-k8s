@@ -5,6 +5,10 @@ apps:
     chart: ingress-nginx
     version: 4.0.16
     namespace: ingress-nginx
+  ingresses:
+    repo: charts
+    chart: ingresses
+    namespace: default
   # cert-manager
   cert-manager:
     repo: jetstack
