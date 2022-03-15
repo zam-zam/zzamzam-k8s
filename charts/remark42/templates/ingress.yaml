@@ -1,0 +1,54 @@
+{{- if .Values.ingress.enabled }}
+{{- $fullName := include "remark42.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
+{{- $apiVersion := .Capabilities.APIVersions -}}
+{{- if $apiVersion.Has "networking.k8s.io/v1" }}
+apiVersion: networking.k8s.io/v1
+{{- else }}
+{{- if $apiVersion.Has "networking.k8s.io/v1beta1" }}
+apiVersion: networking.k8s.io/v1beta1
+{{- else }}
+apiVersion: extensions/v1beta1
+{{- end }}
+{{- end }}
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "remark42.labels" . | nindent 4 }}
+  annotations:
+  {{- if ne .Values.ingress.path "/" }}
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  {{- end }}
+  {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.ingress.tls }}
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host | quote }}
+      secretName: {{ .Values.ingress.tls.secretName }}
+  {{- end }}
+  rules:
+    - host: {{ .Values.ingress.host | quote }}
+      http:
+        paths:
+          {{- if ne .Values.ingress.path "/" }}
+          - path: {{ .Values.ingress.path }}(/|$)(.*)
+          {{- else }}
+          - path: {{ .Values.ingress.path }}
+          {{- end }}
+            {{- if $apiVersion.Has "networking.k8s.io/v1" }}
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ $svcPort }}
+            {{- else }}
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: {{ $svcPort }}
+            {{- end }}
+  {{- end }}

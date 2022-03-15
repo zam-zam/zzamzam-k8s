@@ -187,3 +187,29 @@ joplin-server:
           - joplin.k8s.zzamzam.dev
   postgresql:
     enabled: false
+
+remark42:
+  nodeSelector: null
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      cert-manager.io/cluster-issuer: "letsencrypt"
+    host: remark42.k8s.zzamzam.dev
+    tls:
+      secretName: letsencrypt
+  settings:
+    url: https://remark42.k8s.zzamzam.dev
+    site: zzamzam_dev
+    timeZone: Europe/Moscow
+    emoji: true
+    oauth:
+      github:
+        enabled: true
+      google:
+        enabled: true
+      yandex:
+        enabled: true
+  storage:
+    className: openebs-hostpath
+    requestedSize: 1Gi

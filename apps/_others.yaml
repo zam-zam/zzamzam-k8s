@@ -61,3 +61,8 @@ apps:
     chart: joplin-server
     version: 4.5.0
     namespace: joplin
+  # remark42
+  remark42:
+    repo: charts
+    chart: remark42
+    namespace: remark42
