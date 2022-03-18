@@ -203,6 +203,10 @@ remark42:
     site: zzamzam_dev
     timeZone: Europe/Moscow
     emoji: true
+    auth:
+      email:
+        enable: true
+        from: remark42@zzamzam.dev
     oauth:
       github:
         enabled: true
@@ -210,6 +214,17 @@ remark42:
         enabled: true
       yandex:
         enabled: true
+    smtp:
+      enabled: true
+      host: postfix-mail.postfix.svc.cluster.local
+      port: "587"
+      tls: false
+    notify:
+      type:
+        admin: email
+      email:
+        fromAddress: remark42@zzamzam.dev
+
   storage:
     className: openebs-hostpath
     requestedSize: 1Gi
