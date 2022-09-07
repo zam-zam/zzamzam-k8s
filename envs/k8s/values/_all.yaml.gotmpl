@@ -107,6 +107,7 @@ postfix:
     - name: opendkim-keys
       mountPath: "/etc/opendkim/keys"
       readOnly: true
+  recreateOnRedeploy: false
 
 gitea:
   gitea:
