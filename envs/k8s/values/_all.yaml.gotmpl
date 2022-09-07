@@ -1,19 +1,23 @@
 oauth2-proxy:
   config:
     configFile: |-
-      email_domains = [ "*" ]
       upstreams = [ "file:///dev/null", "http://auth.k8s.zzamzam.dev/redirect/" ]
   extraArgs:
     provider: "github"
     scope: "user:email"
     cookie-domain: ".k8s.zzamzam.dev"
-    cookie-expire: "0h5m0s"
+    cookie-expire: "24h0m0s"
     cookie-samesite: "lax"
     session-cookie-minimal: "false"
     session-store-type: "cookie"
     set-authorization-header: "true"
     silence-ping-logging: "true"
     whitelist-domain: ".k8s.zzamzam.dev"
+  metrics:
+    enabled: false
+  authenticatedEmailsFile:
+    enabled: true
+    persistence: configmap
   ingress:
     enabled: true
     path: /
@@ -30,8 +34,6 @@ oauth2-proxy:
     - secretName: letsencrypt
       hosts:
       - auth.k8s.zzamzam.dev
-  metrics:
-    enabled: false
 
 ingress-nginx:
   tcp:
