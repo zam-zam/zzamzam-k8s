@@ -67,10 +67,6 @@ apps:
     chart: remark42
     namespace: remark42
   # tt-rss
-  tt-rss-secrets:
-    repo: charts
-    chart: secrets
-    namespace: rss
   tt-rss:
     repo: k8s-at-home
     chart: tt-rss
