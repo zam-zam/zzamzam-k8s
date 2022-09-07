@@ -76,4 +76,5 @@ apps:
   oauth2-proxy:
     repo: oauth2-proxy
     chart: oauth2-proxy
+    version: 6.2.6
     namespace: oauth2
