@@ -76,3 +76,8 @@ apps:
     chart: tt-rss
     version: 4.5.0
     namespace: rss
+  # oauth2
+  oauth2-proxy:
+    repo: oauth2-proxy
+    chart: oauth2-proxy
+    namespace: oauth2

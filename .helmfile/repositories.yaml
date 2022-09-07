@@ -11,3 +11,5 @@ repositories:
     url: https://bokysan.github.io/docker-postfix
   - name: k8s-at-home
     url: https://k8s-at-home.com/charts/
+  - name: oauth2-proxy
+    url: https://oauth2-proxy.github.io/manifests
