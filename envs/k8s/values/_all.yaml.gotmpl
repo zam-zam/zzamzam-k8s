@@ -1,7 +1,7 @@
 oauth2-proxy:
   config:
     configFile: |-
-      upstreams = [ "file:///dev/null", "http://auth.k8s.zzamzam.dev/redirect/" ]
+      upstreams = [ "file:///dev/null" ]
   extraArgs:
     provider: "github"
     scope: "user:email"
@@ -10,7 +10,7 @@ oauth2-proxy:
     cookie-samesite: "lax"
     session-cookie-minimal: "false"
     session-store-type: "cookie"
-    set-authorization-header: "true"
+    set-authorization-header: "false"
     silence-ping-logging: "true"
     whitelist-domain: ".k8s.zzamzam.dev"
   metrics:
@@ -24,10 +24,6 @@ oauth2-proxy:
     annotations:
       kubernetes.io/ingress.class: nginx
       cert-manager.io/cluster-issuer: "letsencrypt"
-      nginx.ingress.kubernetes.io/server-snippet: |
-        location ~ /redirect/(.*) {
-          return 307 https://$1$is_args$args;
-        }
     hosts:
     - auth.k8s.zzamzam.dev
     tls:
@@ -155,7 +151,7 @@ gitea:
       kubernetes.io/ingress.class: nginx
       cert-manager.io/cluster-issuer: "letsencrypt"
       nginx.ingress.kubernetes.io/auth-url: "https://auth.k8s.zzamzam.dev/oauth2/auth"
-      nginx.ingress.kubernetes.io/auth-signin: "https://auth.k8s.zzamzam.dev/oauth2/start?rd=/redirect/$http_host$request_uri"
+      nginx.ingress.kubernetes.io/auth-signin: "https://auth.k8s.zzamzam.dev/oauth2/start?rd=$scheme%3A%2F%2F$host"
     hosts:
       - host: git.k8s.zzamzam.dev
         paths:
@@ -289,7 +285,7 @@ tt-rss:
         kubernetes.io/ingress.class: nginx
         cert-manager.io/cluster-issuer: "letsencrypt"
         nginx.ingress.kubernetes.io/auth-url: "https://auth.k8s.zzamzam.dev/oauth2/auth"
-        nginx.ingress.kubernetes.io/auth-signin: "https://auth.k8s.zzamzam.dev/oauth2/start?rd=/redirect/$http_host$request_uri"
+        nginx.ingress.kubernetes.io/auth-signin: "https://auth.k8s.zzamzam.dev/oauth2/start?rd=$scheme%3A%2F%2F$host"
       hosts:
         - host: rss.k8s.zzamzam.dev
           paths:
