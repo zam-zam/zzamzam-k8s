@@ -72,6 +72,12 @@ apps:
     chart: tt-rss
     version: 4.5.0
     namespace: rss
+  # freshrss
+  freshrss:
+    repo: k8s-at-home
+    chart: freshrss
+    version: 6.4.2
+    namespace: rss
   # oauth2
   oauth2-proxy:
     repo: oauth2-proxy
