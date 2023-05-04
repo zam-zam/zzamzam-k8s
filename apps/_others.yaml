@@ -84,3 +84,9 @@ apps:
     chart: oauth2-proxy
     version: 6.2.6
     namespace: oauth2
+  # velero
+  velero:
+    repo: vmware-tanzu
+    chart: velero
+    version: 4.0.1
+    namespace: velero

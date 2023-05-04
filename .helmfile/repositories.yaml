@@ -13,3 +13,7 @@ repositories:
     url: https://k8s-at-home.com/charts/
   - name: oauth2-proxy
     url: https://oauth2-proxy.github.io/manifests
+  - name: vmware-tanzu
+    url: https://vmware-tanzu.github.io/helm-charts
+  - name: https://groundhog2k.github.io/helm-charts
+    url: https://groundhog2k.github.io/helm-charts
