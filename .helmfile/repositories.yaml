@@ -6,7 +6,7 @@ repositories:
   - name: gitea-charts
     url: https://dl.gitea.io/charts/
   - name: bitnami
-    url: https://charts.bitnami.com/bitnami
+    url: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
   - name: docker-postfix
     url: https://bokysan.github.io/docker-postfix
   - name: k8s-at-home

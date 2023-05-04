@@ -87,6 +87,9 @@ postgresql:
     persistence:
       enabled: true
       size: 8Gi
+    resources:
+      requests:
+        cpu: "10m"
 
 postfix:
   config:
@@ -210,6 +213,7 @@ joplin-server:
     MAILER_PORT: 587
     MAILER_SECURE: "0"
     MAILER_NOREPLY_EMAIL: joplin@zzamzam.dev
+    MAX_TIME_DRIFT: "0"
   ingress:
     main:
       enabled: true
