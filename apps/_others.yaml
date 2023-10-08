@@ -90,3 +90,13 @@ apps:
     chart: velero
     version: 4.0.1
     namespace: velero
+  # wikijs
+  wikijs-secrets:
+    repo: charts
+    chart: secrets
+    namespace: wikijs
+  wikijs:
+    repo: requarks
+    chart: wiki
+    version: 2.2.20
+    namespace: wikijs

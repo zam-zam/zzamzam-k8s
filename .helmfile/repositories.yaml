@@ -15,5 +15,7 @@ repositories:
     url: https://oauth2-proxy.github.io/manifests
   - name: vmware-tanzu
     url: https://vmware-tanzu.github.io/helm-charts
-  - name: https://groundhog2k.github.io/helm-charts
+  - name: groundhog2k
     url: https://groundhog2k.github.io/helm-charts
+  - name: requarks
+    url: https://charts.js.wiki
