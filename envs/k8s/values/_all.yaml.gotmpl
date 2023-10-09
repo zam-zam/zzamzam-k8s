@@ -1,3 +1,75 @@
+wikijs-ingresses:
+  ingressMap:
+    wikijs-public:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+        kubernetes.io/ingress.class: nginx
+      spec:
+        rules:
+        - host: docs.k8s.zzamzam.dev
+          http:
+            paths:
+            - backend:
+                service:
+                  name: wikijs
+                  port:
+                    number: 80
+              path: /
+              pathType: Exact
+            - backend:
+                service:
+                  name: wikijs
+                  port:
+                    number: 80
+              path: /home
+              pathType: Exact
+            - backend:
+                service:
+                  name: wikijs
+                  port:
+                    number: 80
+              path: /favicon.ico
+              pathType: Exact
+            - backend:
+                service:
+                  name: wikijs
+                  port:
+                    number: 80
+              path: /graphql
+              pathType: Exact
+            - backend:
+                service:
+                  name: wikijs
+                  port:
+                    number: 80
+              path: /_assets/
+              pathType: Prefix
+            - backend:
+                service:
+                  name: wikijs
+                  port:
+                    number: 80
+              path: /ru/
+              pathType: Prefix
+            - backend:
+                service:
+                  name: wikijs
+                  port:
+                    number: 80
+              path: /t
+              pathType: Exact
+            - backend:
+                service:
+                  name: wikijs
+                  port:
+                    number: 80
+              path: /t/
+              pathType: Prefix
+        tls:
+        - hosts:
+          - docs.k8s.zzamzam.dev
+          secretName: letsencrypt
+
 wikijs:
   postgresql:
     enabled: false

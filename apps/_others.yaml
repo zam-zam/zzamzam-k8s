@@ -100,3 +100,7 @@ apps:
     chart: wiki
     version: 2.2.20
     namespace: wikijs
+  wikijs-ingresses:
+    repo: charts
+    chart: ingresses
+    namespace: wikijs
