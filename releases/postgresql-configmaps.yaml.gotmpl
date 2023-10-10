@@ -1,6 +1,6 @@
 fullnameOverride: postgresql-configmaps
 
-configsMap:
+configMapsMap:
   scripts-initdb:
     data:
       {{- range (list "gitea" "keycloak") }}

@@ -21,8 +21,9 @@ apps:
     namespace: cert-manager
   # postgresql
   postgresql-configmaps:
-    repo: charts
+    repo: zzamtools
     chart: configmaps
+    version: 1.0.1
     namespace: postgresql
   postgresql:
     repo: bitnami
@@ -31,8 +32,9 @@ apps:
     namespace: postgresql
   # postfix
   postfix-secrets:
-    repo: charts
+    repo: zzamtools
     chart: secrets
+    version: 1.0.0
     namespace: postfix
   postfix:
     repo: docker-postfix
@@ -41,8 +43,9 @@ apps:
     namespace: postfix
   # gitea
   gitea-secrets:
-    repo: charts
+    repo: zzamtools
     chart: secrets
+    version: 1.0.0
     namespace: gitea
   gitea:
     repo: gitea-charts
@@ -92,8 +95,9 @@ apps:
     namespace: velero
   # wikijs
   wikijs-secrets:
-    repo: charts
+    repo: zzamtools
     chart: secrets
+    version: 1.0.0
     namespace: wikijs
   wikijs:
     repo: requarks
