@@ -6,7 +6,8 @@ apps:
     version: 4.0.16
     namespace: ingress-nginx
   ingresses:
-    repo: charts
+    repo: zzamtools
+    version: 1.0.0
     chart: ingresses
     namespace: default
   # cert-manager
@@ -16,7 +17,8 @@ apps:
     version: v1.7.0
     namespace: cert-manager
   cert-manager-issuers:
-    repo: charts
+    repo: zzamtools
+    version: 1.0.0
     chart: issuers
     namespace: cert-manager
   # postgresql
@@ -105,6 +107,7 @@ apps:
     version: 2.2.20
     namespace: wikijs
   wikijs-ingresses:
-    repo: charts
+    repo: zzamtools
+    version: 1.0.0
     chart: ingresses
     namespace: wikijs
