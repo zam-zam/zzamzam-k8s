@@ -6,7 +6,7 @@ wikijs-ingresses:
         kubernetes.io/ingress.class: nginx
       spec:
         rules:
-        - host: docs.k8s.zzamzam.dev
+        - host: docs.zzamzam.dev
           http:
             paths:
             - backend:
@@ -67,7 +67,7 @@ wikijs-ingresses:
               pathType: Prefix
         tls:
         - hosts:
-          - docs.k8s.zzamzam.dev
+          - docs.zzamzam.dev
           secretName: letsencrypt
 
 wikijs:
@@ -86,14 +86,14 @@ wikijs:
       nginx.ingress.kubernetes.io/auth-url: "https://auth.k8s.zzamzam.dev/oauth2/auth"
       nginx.ingress.kubernetes.io/auth-signin: "https://auth.k8s.zzamzam.dev/oauth2/start?rd=$scheme%3A%2F%2F$host"
     hosts:
-      - host: docs.k8s.zzamzam.dev
+      - host: docs.zzamzam.dev
         paths:
           - path: /
             pathType: Prefix
     tls:
     - secretName: letsencrypt
       hosts:
-        - docs.k8s.zzamzam.dev
+        - docs.zzamzam.dev
 
 velero:
   credentials:
@@ -106,14 +106,14 @@ oauth2-proxy:
   extraArgs:
     provider: "github"
     scope: "user:email"
-    cookie-domain: ".k8s.zzamzam.dev"
+    cookie-domain: ".zzamzam.dev"
     cookie-expire: "24h0m0s"
     cookie-samesite: "lax"
     session-cookie-minimal: "false"
     session-store-type: "cookie"
     set-authorization-header: "false"
     silence-ping-logging: "true"
-    whitelist-domain: ".k8s.zzamzam.dev"
+    whitelist-domain: ".k8s.zzamzam.dev,docs.zzamzam.dev"
   metrics:
     enabled: false
   authenticatedEmailsFile:
@@ -149,11 +149,11 @@ ingresses:
           }
       spec:
         rules:
-        - host: ip.k8s.zzamzam.dev
+        - host: ip.zzamzam.dev
         tls:
         - hosts:
-          - ip.k8s.zzamzam.dev
-          secretName: ip-k8s-zzamzam-dev
+          - ip.zzamzam.dev
+          secretName: ip-zzamzam-dev
 
 cert-manager-issuers:
   issuersMap:
