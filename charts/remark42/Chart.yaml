@@ -9,7 +9,7 @@ maintainers:
 
 version: 0.3.3
 
-appVersion: "v1.9.0"
+appVersion: "v1.12.1"
 
 dependencies:
   - name: redis
