@@ -65,6 +65,13 @@ wikijs-ingresses:
                     number: 80
               path: /t/
               pathType: Prefix
+            - backend:
+                service:
+                  name: wikijs
+                  port:
+                    number: 80
+              path: /media/
+              pathType: Prefix
         tls:
         - hosts:
           - docs.zzamzam.dev
