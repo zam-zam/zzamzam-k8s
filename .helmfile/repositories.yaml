@@ -19,3 +19,5 @@ repositories:
     url: https://charts.js.wiki
   - name: zzamtools
     url: https://zzamtools.github.io/helm-charts
+  - name: "groundhog2k"
+    url: https://groundhog2k.github.io/helm-charts
