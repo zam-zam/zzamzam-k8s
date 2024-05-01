@@ -1,6 +1,6 @@
 initContainers:
   - name: velero-plugin-for-aws
-    image: velero/velero-plugin-for-aws:v1.7.0
+    image: velero/velero-plugin-for-aws:v1.9.2
     imagePullPolicy: IfNotPresent
     volumeMounts:
       - mountPath: /target
@@ -18,7 +18,8 @@ resources:
 
 nodeAgent:
   podVolumePath: /var/lib/k0s/kubelet/pods
-  privileged: true
+  containerSecurityContext:
+    privileged: true
   resources:
     requests:
       cpu: 10m

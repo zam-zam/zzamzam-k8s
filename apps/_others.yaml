@@ -93,7 +93,7 @@ apps:
   velero:
     repo: vmware-tanzu
     chart: velero
-    version: 4.0.1
+    version: 6.0.0
     namespace: velero
   # wikijs
   wikijs-secrets:
