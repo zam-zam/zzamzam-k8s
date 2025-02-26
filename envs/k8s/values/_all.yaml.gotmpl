@@ -249,6 +249,10 @@ gitea:
     storageClass: openebs-hostpath
   memcached:
     enabled: true
+    resources:
+      requests:
+        cpu: 10m
+        memory: 128Mi
   postgresql:
     enabled: false
   mysql:
