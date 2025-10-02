@@ -1,9 +1,9 @@
 bases:
-  - .helmfile/environments.yaml
+  - .helmfile/environments.yaml.gotmpl
 ---
 bases:
   - .helmfile/repositories.yaml
-  - .helmfile/releases.yaml
+  - .helmfile/releases.yaml.gotmpl
 helmDefaults:
   wait: true
   atomic: true
